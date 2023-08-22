@@ -94,48 +94,61 @@ public:
         Node* ansHead = NULL;
         Node* ansTail = NULL;
         
-        while(first != NULL && second != NULL){
-            int sum = c + first->data + second->data;
+        while(first != NULL || second != NULL || c != 0){
+            int val1 = 0;
+            if(first != NULL)
+                val1 = first->data;
+                
+            int val2 = 0;
+            if(second != NULL)
+                val2 = second->data;
+            
+            int sum = c + val1 + val2;
             int digit = sum%10;
             
             Node* temp = new Node(digit);
             insertAtTail(ansHead , ansTail , digit);
             
             c = sum/10;
-            first = first->next;
-            second = second->next;
-        }
-        
-        while(first != NULL){
-            int sum = c + first->data;
-            int digit = sum%10;
+            if(first != NULL)
+                first = first->next;
             
-            insertAtTail(ansHead , ansTail , digit);
-            
-            c = sum/10;
-            first = first->next;
-        }
-        
-        while(second != NULL){
-            int sum = c + second->data;
-            int digit = sum%10;
-            
-            insertAtTail(ansHead , ansTail , digit);
-            
-            c = sum/10;
-            second = second->next;
-        }
-        
-        while(c != 0){
-            int sum = c;
-            int digit = sum%10;
-            
-            insertAtTail(ansHead , ansTail , digit);
-            
-            c = sum/10;
+            if(second != NULL)
+                second = second->next;
         }
         return ansHead;
     }
+        
+    //     while(first != NULL){
+    //         int sum = c + first->data;
+    //         int digit = sum%10;
+            
+    //         insertAtTail(ansHead , ansTail , digit);
+            
+    //         c = sum/10;
+    //         first = first->next;
+    //     }
+        
+    //     while(second != NULL){
+    //         int sum = c + second->data;
+    //         int digit = sum%10;
+            
+    //         insertAtTail(ansHead , ansTail , digit);
+            
+    //         c = sum/10;
+    //         second = second->next;
+    //     }
+        
+    //     while(c != 0){
+    //         int sum = c;
+    //         int digit = sum%10;
+            
+    //         insertAtTail(ansHead , ansTail , digit);
+            
+    //         c = sum/10;
+    //     }
+    //     return ansHead;
+    // }
     
     //Function to add two numbers represented by linked list.
     struct Node* addTwoLists(struct Node* first, struct Node* second)
